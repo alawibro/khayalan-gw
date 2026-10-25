@@ -1,0 +1,118 @@
+/* =========================================================================
+   base.css
+   Font kustom, token warna, reset, dan tipografi dasar.
+   Semua nilai warna didefinisikan sekali di :root, lalu dipakai ulang.
+   ========================================================================= */
+
+/* ----- Font: Rodin Pro dipakai untuk seluruh teks (isi 500, judul 700) ----- */
+@font-face {
+  font-family: "Rodin Pro";
+  src: url("../fonts/rodin-pro-db.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rodin Pro";
+  src: url("../fonts/rodin-pro-ub.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----- Token ----- */
+:root {
+  /* Palet inti: Warm Cream, Soft Gold/Amber, Deep Charcoal/Espresso */
+  --cream: #f6eedf;      /* teks utama, permukaan terang */
+  --linen: #e6d6b8;      /* teks sekunder */
+  --honey: #d9a24b;      /* aksen: tautan aktif, garis, status */
+  --old-gold: #a9742c;   /* aksen gelap: batang gulungan, scrollbar */
+  --espresso: #1e1510;   /* latar paling gelap */
+  --umber: #2c2019;      /* permukaan panel */
+
+  /* Peran warna (dipakai komponen) */
+  --text: var(--cream);
+  --text-soft: #e6d6b8; /* solid, bukan transparan, agar kontras tidak turun di atas video */
+  --rule: rgba(217, 162, 75, 0.28);
+  /* Emas terang khusus untuk TEKS kecil di atas video (kontras >= 4.5:1) */
+  --honey-text: #f3d08f;
+
+  /* Satu keluarga font untuk semua elemen */
+  --font: "Rodin Pro", "Segoe UI", system-ui, sans-serif;
+
+  /* Ritme ruang dan gerak */
+  --gutter: clamp(20px, 4vw, 56px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ----- Reset ringan ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--espresso); /* tampil sebelum video siap */
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Fokus keyboard selalu terlihat (tidak dihapus) */
+:focus-visible {
+  outline: 2px solid var(--honey);
+  outline-offset: 4px;
+}
+
+/* Atribut hidden harus selalu menyembunyikan, walau ada display di CSS lain */
+[hidden] {
+  display: none !important;
+}
