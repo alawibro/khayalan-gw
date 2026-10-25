@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="My Kisah, hub personal Mahiru Shiina." />
+  <meta name="theme-color" content="#1e1510" />
+  <title>Mahiru Shiina, My Kisah</title>
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- ===== Latar: video penuh + lapisan gelap-hangat ===== -->
+  <div class="bg" aria-hidden="true">
+    <video id="bg-video" class="bg__video" autoplay muted loop playsinline disablepictureinpicture preload="auto">
+      <source src="assets/bg-video-1080p.mp4" type="video/mp4" />
+    </video>
+    <div class="bg__veil"></div>
+  </div>
+
+  <!-- ===== Gerbang masuk: klik pertama membuka audio dan video ===== -->
+  <div id="gate" class="gate">
+    <div class="gate__inner">
+      <h1 class="gate__title">Mahiru Shiina</h1>
+      <p class="gate__sub">My Kisah</p>
+      <button id="gate-enter" class="btn btn--solid" type="button">Masuki kuil</button>
+      <p class="gate__hint">Suara dan video aktif setelah Anda masuk.</p>
+    </div>
+  </div>
+
+  <!-- ===== Aplikasi utama (inert sampai gerbang dibuka) ===== -->
+  <div id="app" class="shrine" inert>
+
+    <header class="site-header">
+      <p class="brand">Mahiru Shiina <span class="brand__sub">My Kisah</span></p>
+      <button id="sound-toggle" class="sound" type="button" aria-pressed="true">
+        Suara: <span class="sound__state">Aktif</span>
+      </button>
+    </header>
+
+    <div class="shrine__body">
+
+      <!-- Potret: diisi dari content.js -->
+      <aside class="portrait" aria-label="Profil singkat">
+        <figure class="portrait__frame">
+          <img id="portrait-img" class="portrait__img" alt="" decoding="async" />
+        </figure>
+        <div class="portrait__caption">
+          <p id="portrait-name" class="portrait__name"></p>
+          <p id="portrait-role" class="portrait__role"></p>
+        </div>
+      </aside>
+
+      <div class="shrine__main">
+        <nav class="nav" aria-label="Menu utama">
+          <ul id="nav-list" class="nav__list"></ul>
+        </nav>
+
+        <!-- Layar dibuat dari content.js; hanya satu yang tampil -->
+        <main id="screens" class="screens" tabindex="-1"></main>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Audio: jingle menu (sekali putar) ===== -->
+  <!-- Efek suara (SFX) dibuat di js/audio.js -->
+  <audio id="bgm" src="assets/menu-utama.mp3" preload="auto"></audio>
+
+  <!--
+    Script dimuat berurutan (klasik, bukan modul ES) agar halaman
+    bisa dibuka langsung dari berkas tanpa server.
+    Urutan wajib: content -> env -> audio -> background -> render -> router -> main
+  -->
+  <script src="js/content.js"></script>
+  <script src="js/env.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/background.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
